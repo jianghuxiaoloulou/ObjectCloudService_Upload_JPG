@@ -60,7 +60,13 @@ go get -u github.com/juju/ratelimit@v1.0.1
 # git push -u origin master
 
 
+go build -ldflags="-H windowsgui" -o .\ObjectCloudService_Upload_JPG\ObjectCloudService_Upload_JPG.exe .\main.go .\setup.go
+
 # 修改记录
+# 2024/01/03 修改上传逻辑（拆分查询逻辑）
+* 1. 通过file_remote表获取需要上传的数据（获取处理的任务）
+* 2. 查询处理任务的相关信息
+* 3. 确认是否是有效上传数据（更新file_remote 表）
 # 2021/12/18 开始重构存储策略上传服务
 # 2021/12/27 需要区分jpg和Dicom 数据，根据本地状态和远端状态分别处理数据
 # 2022/01/06 修改了表结构，增加了file_remote表，上传数据的所有内容从file_remote表中获取
